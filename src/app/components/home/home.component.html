@@ -1,16 +1,26 @@
-<nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Navbar</span>
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Home</span>
+    <button type="button" class="btn btn-outline-danger" (click)="logout()">Log Out</button>
   </nav>
+<br>
+<p>Hi <strong><i>{{user}}</i></strong>, welcome!</p>
 
-<h1>Hi {{useer}}, welcome!</h1>
-<button md-raised-button type="button" (click)="logout()">Log Out</button>
+<hr>
+<div class="text-left"><h2>Project List</h2></div>
 
-<div class="card container m-5" style="width: 18rem;">
+<div class="card-columns">
+  <div class="card" *ngFor="let p of proyectos; let i = index">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <h5 class="card-title">{{p.titulo}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Project Id: {{p.proyectoid}}</h6>
+      <p class="card-text">{{p.descripcion}}</p>
+
+      <!-- <button type="button" class="btn btn-info">Details</button> -->
+
+      <a [routerLink] = "['/proyecto', i]" class="btn btn-info" >Details</a>
+
+      <button type="button" class="btn btn-danger float-right" 
+        (click)="deleteProject()">Delete</button>
     </div>
   </div>
+</div>

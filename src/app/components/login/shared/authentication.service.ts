@@ -26,11 +26,16 @@ export class AuthenticationService {
         return localStorage.getItem('currentUser');
     }
 
+    getUsuid () {
+        return localStorage.getItem('usuid');
+    }
+
     login (loginObj:LoginObject) {
         return this.http.post("http://localhost:8888/APIPRUEBA1-master/Login.php", loginObj).pipe(
             map(resp => {
                 console.log("Entró en el mapa");
                 localStorage.setItem('currentUser', JSON.stringify(resp[0]['user']))
+                localStorage.setItem('usuid', JSON.stringify(resp[0]['usuid']))
                 return resp;
             })
         );
